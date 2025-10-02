@@ -1,0 +1,27 @@
+<h2>Déclaration d’une pollution</h2>
+
+<form [formGroup]="formulaire" (ngSubmit)="send()">
+
+  <p>Titre : <input formControlName="titre" /></p>
+
+  <p>Type :
+    <select formControlName="type">
+      <option value="">Sélectionner</option>
+      <option>Plastique</option>
+      <option>Chimique</option>
+      <option>Dépôt sauvage</option>
+      <option>Eau</option>
+      <option>Air</option>
+      <option>Autre</option>
+    </select>
+  </p>
+
+  <p>Description : <textarea formControlName="description"></textarea></p>
+  <p>Date : <input type="date" formControlName="date" /></p>
+  <p>Lieu : <input formControlName="lieu" /></p>
+  <p>Latitude : <input formControlName="latitude" type="number" /></p>
+  <p>Longitude : <input formControlName="longitude" type="number" /></p>
+  <p>Photo (URL) : <input formControlName="photo" /></p>
+
+  <button type="submit" [disabled]="formulaire.invalid">Déclarer</button>
+</form>
