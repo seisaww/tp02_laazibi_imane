@@ -1,4 +1,5 @@
 @if (pollution) {
+  <body>
   <h2>Récapitulatif </h2>
   <p><strong>Titre :</strong> {{ pollution.titre }}</p>
   <p><strong>Type :</strong> {{ pollution.type }}</p>
@@ -12,4 +13,5 @@
     <p><strong>Photo :</strong></p>
     <img [src]="pollution.photo" alt="photo pollution" width="200">
   }
+  </body>
 }
