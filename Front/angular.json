@@ -36,12 +36,14 @@
                   "maximumWarning": "5mb",
                   "maximumError": "10mb"
                 },
+                
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2mb",
                   "maximumError": "4mb"
                 }
               ],
+              "baseHref": "/",
               "outputHashing": "all"
             },
             "development": {
