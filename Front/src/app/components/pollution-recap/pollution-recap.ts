@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-c2',
+  selector: 'app-pollution-recap',
   imports: [CommonModule],
-  templateUrl: './c2.html',
-  styleUrl: './c2.css'
+  templateUrl: './pollution-recap.html',
+  styleUrl: './pollution-recap.css'
 })
-export class C2 {
+export class PollutionRecap {
   @Input() pollution: any;
 }

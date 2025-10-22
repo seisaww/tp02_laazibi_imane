@@ -1,0 +1,109 @@
+<div class="card mb-4">
+  <div class="card-header">
+    Filtres
+  </div>
+  <div class="card-body">
+    <div class="row g-3">
+      
+      <div class="col-md-4">
+        <label for="filterType" class="form-label">Type de pollution</label>
+        <select id="filterType" class="form-select" 
+                (change)="handleFilterChange('type', $event)"
+                [value]="filterCriteria.type">
+          <option value="">Tous les types</option>
+          <option value="Air">Air</option>
+          <option value="Eau">Eau</option>
+          <option value="Sol">Sol</option>
+          <option value="Chimique">Chimique</option>
+          <option value="Sonore">Sonore</option>
+          </select>
+      </div>
+
+      <div class="col-md-4">
+        <label for="filterLieu" class="form-label">Lieu</label>
+        <input type="text" id="filterLieu" class="form-control" 
+               placeholder="Rechercher un lieu..."
+               (input)="handleFilterChange('lieu', $event)"
+               [value]="filterCriteria.lieu">
+      </div>
+
+      <div class="col-md-4">
+        <label for="filterDate" class="form-label">Date</label>
+        <input type="date" id="filterDate" class="form-control" 
+               (change)="handleFilterChange('date', $event)"
+               [value]="filterCriteria.date">
+      </div>
+    </div>
+    
+    <div class="d-flex justify-content-end mt-3">
+        <button class="btn btn-secondary btn-sm" (click)="resetFilters()">
+            Effacer les filtres
+        </button>
+    </div>
+  </div>
+</div>
+
+@if (activeFilters.length > 0) {
+  <div class="mb-3 p-2 bg-light border rounded">
+    <strong>Filtres actifs :</strong>
+    @for (filter of activeFilters; track filter.key) {
+      <span class="badge bg-primary me-2" style="font-size: 0.9em;">
+        {{ filter.key }}: {{ filter.value }}
+      </span>
+    }
+  </div>
+} @else {
+  <div class="mb-3 text-muted">
+  </div>
+}
+<hr>
+
+@if (pollutionToEdit) {
+  <div class="card mb-4">
+    <div class="card-header bg-warning text-white">
+      Modification de la pollution : {{ pollutionToEdit.titre }}
+    </div>
+    <div class="card-body">
+      <app-pollution-from 
+          [pollutionAEditer]="pollutionToEdit"
+          (pollutionDeclaree)="handlePollutionUpdated($event)"
+          (annulerModification)="cancelEdit()"
+      ></app-pollution-from>
+    </div>
+  </div>
+  <hr>
+}
+
+<div class="row">
+    @for (pollution of filteredPollutions; track pollution.id) {
+        
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body text-center"> 
+                    <h5 class="card-title">{{ pollution.titre }}</h5>
+                    <p class="card-text">
+                       <strong>Lieu :</strong> {{ pollution.lieu }} <br>
+                       <strong>Type :</strong> {{ pollution.type }}
+                    </p>
+                    
+                    <button class="btn btn-info btn-sm me-2" 
+                            [routerLink]="['/pollutions', pollution.id]">
+                        Détails
+                    </button>
+
+                    <div class="btn-group">
+                        <button class="btn btn-primary btn-sm me-2" 
+                                (click)="editPollution(pollution)">
+                            Modifier
+                        </button>
+                        <button class="btn btn-danger btn-sm" 
+                                (click)="deletePollution(pollution.id)">
+                            Supprimer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    } 
+</div>

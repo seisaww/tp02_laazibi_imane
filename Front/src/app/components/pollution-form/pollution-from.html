@@ -15,7 +15,7 @@
           <option>Plastique</option>
           <option>Chimique</option>
           <option>Dépôt sauvage</option>
-          <option>Eau</option>
+          <option>Eau</option>  
           <option>Air</option>
           <option>Autre</option>
         </select>
@@ -47,9 +47,12 @@
     </div>
 
     
-    <div class="button-container">
-      <button type="submit" [disabled]="formulaire.invalid">Déclarer</button>
-    </div>
+    <form [formGroup]="formulaire" (ngSubmit)="send()">
+  
+  <div class="button-container">
+    <button type="submit" [disabled]="formulaire.invalid">Déclarer</button>
+  </div>
+</form>
 
   </form>
 </body>

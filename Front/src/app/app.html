@@ -1,2 +1,12 @@
-<app-c1 (pollutionDéclarée)="pollution = $event"></app-c1>
-<app-c2 [pollution]="pollution"></app-c2>
+<div class="container mt-4">
+  <app-pollution-from (pollutionDeclaree)="onPollutionSauvegardee($event)"></app-pollution-from>
+  <hr>
+  @if (lastPollution) {
+    <h2>Dernière déclaration (Récapitulatif)</h2>
+    <app-pollution-recap [pollution]="lastPollution"></app-pollution-recap>
+    <hr>
+  }
+  <app-liste-pollutions #pollutionListComponent></app-liste-pollutions>
+  <hr>
+  <router-outlet></router-outlet>
+</div>
